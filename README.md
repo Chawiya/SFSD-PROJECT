@@ -20,6 +20,21 @@ A simulator that models fundamental principles of file management systems, allow
 0. Quitter
 
 
+
+
+ ## Features
+- File creation and deletion
+- Memory allocation management
+- Metadata handling for files
+
+## Development Steps
+1. Design structures for memory and files.
+2. Implement file operations.
+3. Test functionalities with various scenarios.
+
+## Testing
+Tested with scenarios including file creation, insertion, and deletion under various conditions.
+
 ![Screenshot 2025-01-06 022638](https://github.com/user-attachments/assets/1f036ed6-7cac-488b-a630-f74e63467b00)
 ![Screenshot 2025-01-06 022722](https://github.com/user-attachments/assets/8024d9c6-0c45-4233-9ea3-c55ab47d70bc)
 ![Screenshot 2025-01-06 022740](https://github.com/user-attachments/assets/e828200d-b218-4fa9-ae40-416d4d492262)
@@ -44,19 +59,6 @@ A simulator that models fundamental principles of file management systems, allow
 ![Screenshot 2025-01-06 023706](https://github.com/user-attachments/assets/985d6173-6e08-4193-93c9-c114db684ae4)
 
 
-
- ## Features
-- File creation and deletion
-- Memory allocation management
-- Metadata handling for files
-
-## Development Steps
-1. Design structures for memory and files.
-2. Implement file operations.
-3. Test functionalities with various scenarios.
-
-## Testing
-Tested with scenarios including file creation, insertion, and deletion under various conditions.
 
 ## Acknowledgments
 Thanks to my instructors and peers for their support.
