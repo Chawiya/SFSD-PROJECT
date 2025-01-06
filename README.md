@@ -1,9 +1,9 @@
-# SFSD-PROJECT
+# SFSD-PROJECT "SGF"
 
 ## Description
 A simulator that models fundamental principles of file management systems, allowing users to create, manage, and manipulate files on a virtual disk.
 
-## Table of Contents:
+## Table des matières:
 (The Menu Of Our Code).
 1. Initialiser la mémoire
 2. Afficher l'état de la mémoire
@@ -19,21 +19,29 @@ A simulator that models fundamental principles of file management systems, allow
 12. Supprimer un fichier
 0. Quitter
 
+## Objectives:
+•	Comprendre comment fonctionne un système de gestion de fichiers (SGF) et ses principaux mécanismes.
+•	Apprendre à utiliser des structures de données comme les tableaux et les listes chaînées pour organiser des fichiers.
+•	Gérer efficacement l’espace mémoire, en allouant et libérant les blocs de stockage correctement.
+•	Créer des algorithmes simples et efficaces pour insérer, chercher et supprimer des fichiers.
+•	Améliorer nous compétences en programmation en C grâce à un projet concret et pratique.
+•	Savoir rédiger un bon rapport technique pour expliquer le fonctionnement de notre programme.
 
 
+## Caractéristiques
+Création et suppression de fichiers
+Gestion de l'allocation de mémoire
+Gestion des métadonnées pour les fichiers
 
- ## Features
-- File creation and deletion
-- Memory allocation management
-- Metadata handling for files
+  
+## Étapes de Développement
+Concevoir des structures pour la mémoire et les fichiers.
+Implémenter les opérations sur les fichiers.
+Tester les fonctionnalités avec divers scénarios.
 
-## Development Steps
-1. Design structures for memory and files.
-2. Implement file operations.
-3. Test functionalities with various scenarios.
-
-## Testing
-Tested with scenarios including file creation, insertion, and deletion under various conditions.
+   
+## Tests
+Testé avec des scénarios incluant la création, l'insertion et la suppression de fichiers dans diverses conditions.
 
 ![Screenshot 2025-01-06 022638](https://github.com/user-attachments/assets/1f036ed6-7cac-488b-a630-f74e63467b00)
 ![Screenshot 2025-01-06 022722](https://github.com/user-attachments/assets/8024d9c6-0c45-4233-9ea3-c55ab47d70bc)
@@ -60,11 +68,11 @@ Tested with scenarios including file creation, insertion, and deletion under var
 
 
 
-## Acknowledgments
-Thanks to my instructors and peers for their support.
+## Remerciements
+Merci à mon instructeur "Dr. LAHRECHE Abdelmadjid" et à mes camarades pour leur soutien.
 
-## Contact Information
-For questions, reach me at : amanidz2tt@gmail.com
+## Informations de Contact
+Pour toute question, contactez-moi à : amanidz2tt@gmail.com
 
 ## Team
 AMANI, RYM, DOUAA, WISSAM, SAMAH, DJIHANE
