@@ -1,3 +1,9 @@
+
+/*
+ * File Management System Implementation
+ * This program implements a file management system with block allocation and record management
+ */
+
 #include <stdio.h>
 #include <string.h>
 #include <stdlib.h>
@@ -11,9 +17,10 @@
 typedef struct {
     int id;
     char data[100];
-    int activ;
+    int activ;     // Active status (1=active, 0=deleted)
 } Record;
 
+// Memory block structure - represents a block in secondary memory
 typedef struct MemoryBlock {
     int id;
     int is_occupied;
@@ -46,7 +53,7 @@ int validate_filename(const char *filename) {
         return 0;
     }
     if (strlen(filename) >= MAX_FILE_NAME) {
-        printf("Nom de fichier trop long (max %d caractËres)\n", MAX_FILE_NAME);
+        printf("Nom de fichier trop long (max %d caract√®res)\n", MAX_FILE_NAME);
         return 0;
     }
     return 1;
@@ -54,11 +61,11 @@ int validate_filename(const char *filename) {
 
 int validate_record_count(int count) {
     if (count <= 0) {
-        printf("Le nombre d'enregistrements doit Ítre positif\n");
+        printf("Le nombre d'enregistrements doit √™tre positif\n");
         return 0;
     }
     if (count > MAX_BLOCKS * Fact_Blockage) {
-        printf("Nombre d'enregistrements trop grand pour la mÈmoire disponible\n");
+        printf("Nombre d'enregistrements trop grand pour la m√©moire disponible\n");
         return 0;
     }
     return 1;
@@ -66,15 +73,15 @@ int validate_record_count(int count) {
 
 int validate_mode(int mode) {
     if (mode != 0 && mode != 1) {
-        printf("Mode invalide! Utilisez 0 pour chaÓnÈ ou 1 pour contigu\n");
+        printf("Mode invalide! Utilisez 0 pour cha√Æn√© ou 1 pour contigu\n");
         return 0;
     }
     return 1;
 }
-// fonction pour afficher la liste des m√©tadonn√©es
+// fonction pour afficher la liste des m√É¬©tadonn√É¬©es
 void afficher_metadonnes() {
 	int i;
-    printf("liste des m√©tadonn√©es : \n");
+    printf("liste des m√É¬©tadonn√É¬©es : \n");
     for ( i = 0; i < index_metadonnes; i++) {
         if (liste_metadonnes[i].etat == 1) {
             printf("fichier : %s \n", liste_metadonnes[i].file_name);
@@ -82,7 +89,7 @@ void afficher_metadonnes() {
             printf("record count : %d\n", liste_metadonnes[i].record_count);
             printf("bloc count : %d\n", liste_metadonnes[i].bloc_count);
             if (liste_metadonnes[i].mode == 0) {
-                printf("mode : chain√© \n");
+                printf("mode : chain√É¬© \n");
             }else {
                 printf("mode : contigue \n");
             }
@@ -99,7 +106,7 @@ void initialize_memory() {
     scanf("%d", &total_blocks);
     
     if (total_blocks <= 0 || total_blocks > MAX_BLOCKS) {
-        printf("Nombre de blocs invalide. Utilisation de la valeur par dÈfaut: %d\n", MAX_BLOCKS);
+        printf("Nombre de blocs invalide. Utilisation de la valeur par d√©faut: %d\n", MAX_BLOCKS);
         total_blocks = MAX_BLOCKS;
     }
 
@@ -107,13 +114,13 @@ void initialize_memory() {
     scanf("%d", &block_size);
     
     if (block_size <= 0) {
-        printf("Taille de bloc invalide. Utilisation de la valeur par dÈfaut: 1024\n");
+        printf("Taille de bloc invalide. Utilisation de la valeur par d√©faut: 1024\n");
         block_size = 1024;
     }
 
     memory = (MemoryBlock *)malloc(total_blocks * sizeof(MemoryBlock));
     if (!memory) {
-        printf("Erreur d'allocation mÈmoire!\n");
+        printf("Erreur d'allocation m√©moire!\n");
         exit(1);
     }
 
@@ -125,7 +132,7 @@ void initialize_memory() {
         memory[i].next = -1;
     }
 
-    printf("\nMÈmoire initialisÈe avec %d blocs de taille %d octets.\n", total_blocks, block_size);
+    printf("\nM√©moire initialis√©e avec %d blocs de taille %d octets.\n", total_blocks, block_size);
 }
 
 // Metadata management functions
@@ -211,7 +218,7 @@ int Contigue(MemoryBlock *memory, int fileSize) {
     for (i = j; i < j + fileSize - 1; i++) {
         memory[i].is_occupied = 1;
     }
-    printf("Allocation contiguÎ rÈussie, dÈbut au bloc %d.\n", j);
+    printf("Allocation contigu√´ r√©ussie, d√©but au bloc %d.\n", j);
     return j;
 }
 
@@ -242,21 +249,21 @@ int Chained(MemoryBlock *memory, int fileSize) {
     }
 
     if (Cmp < fileSize) {
-        printf("Blocs insuffisants pour allocation chaÓnÈe\n");
+        printf("Blocs insuffisants pour allocation cha√Æn√©e\n");
         return -1;
     }
 
-    printf("Allocation chaÓnÈe rÈussie, dÈbut au bloc %d.\n", j);
+    printf("Allocation cha√Æn√©e r√©ussie, d√©but au bloc %d.\n", j);
     return j;
 }
 
 void display_memory_state() {
 	int i;
-    printf("\n…tat actuel de la mÈmoire secondaire :\n");
+    printf("\n√âtat actuel de la m√©moire secondaire :\n");
     for ( i = 0; i < total_blocks; i++) {
         if (memory[i].is_occupied) {
             printf("\033[1;31m");
-            printf("Bloc %d : OccupÈ | Fichier : %s | Enregistrements : %d\n",
+            printf("Bloc %d : Occup√© | Fichier : %s | Enregistrements : %d\n",
                    memory[i].id, memory[i].file_name, memory[i].record_count);
             printf("\033[0m");
         } else {
@@ -276,7 +283,7 @@ void crier_fichier(char *file_name, int record_count, int mode) {
     }
 
     if (fichier_existe(file_name) >= 0) {
-        printf("Erreur : Un fichier avec ce nom existe dÈj‡.\n");
+        printf("Erreur : Un fichier avec ce nom existe d√©j√†.\n");
         return;
     }
 
@@ -296,7 +303,7 @@ void crier_fichier(char *file_name, int record_count, int mode) {
             for ( j = 0; j < Fact_Blockage && record_count > 0; j++) {
                 memory[i].r[j].id = (i - adr_pr) * Fact_Blockage + j + 1;
                 memory[i].r[j].activ = 1;
-                printf("Entrez les donnÈes de l'enregistrement %d du bloc %d : ", 
+                printf("Entrez les donn√©es de l'enregistrement %d du bloc %d : ", 
                        memory[i].r[j].id, i);
                 scanf(" %s", memory[i].r[j].data);
                 memory[i].record_count++;
@@ -309,7 +316,7 @@ void crier_fichier(char *file_name, int record_count, int mode) {
             for ( j = 0; j < Fact_Blockage && record_count > 0; j++) {
                 memory[i].r[j].id = memory[i].record_count + 1;
                 memory[i].r[j].activ = 1;
-                printf("Entrez les donnÈes de l'enregistrement %d du bloc %d : ", 
+                printf("Entrez les donn√©es de l'enregistrement %d du bloc %d : ", 
                        memory[i].r[j].id, i);
                 scanf(" %s", memory[i].r[j].data);
                 memory[i].record_count++;
@@ -318,7 +325,7 @@ void crier_fichier(char *file_name, int record_count, int mode) {
         }
     }
 
-    printf("Fichier '%s' crÈÈ avec succËs.\n", file_name);
+    printf("Fichier '%s' cr√©√© avec succ√®s.\n", file_name);
 }
 
 // Record operations and search functions
@@ -330,7 +337,7 @@ Record* searchRecord(const char *file, int id) {
     int mode = read_metadonne(file, 4);
 
     if (adr_pr == -1 || bloc_count <= 0) {
-        printf("Erreur : MÈtadonnÈes introuvables ou fichier vide.\n");
+        printf("Erreur : M√©tadonn√©es introuvables ou fichier vide.\n");
         return NULL;
     }
 
@@ -363,7 +370,7 @@ void insertRecord(const char *file_name, int id, const char *data) {
     int mode = read_metadonne(file_name, 4);
     
     if (adr_pr == -1) {
-        printf("Fichier non trouvÈ\n");
+        printf("Fichier non trouv√©\n");
         return;
     }
     
@@ -394,9 +401,9 @@ void deleteRecordLogical(const char *file, int id) {
     Record *record = searchRecord(file, id);
     if (record != NULL) {
         record->activ = 0;
-        printf("Enregistrement supprimÈ logiquement (ID: %d).\n", id);
+        printf("Enregistrement supprim√© logiquement (ID: %d).\n", id);
     } else {
-        printf("Erreur : Enregistrement non trouvÈ.\n");
+        printf("Erreur : Enregistrement non trouv√©.\n");
     }
 }
 
@@ -442,7 +449,7 @@ void compactMemory(MemoryBlock *memory) {
         memory[i].next = -1;
     }
     
-    printf("Compactage de la mÈmoire terminÈ.\n");
+    printf("Compactage de la m√©moire termin√©.\n");
 }
 
 // Memory defragmentation and file management
@@ -464,7 +471,7 @@ void defragmentMemory() {
         }
     }
     
-    printf("\nDÈfragmentation de la mÈmoire terminÈe.\n");
+    printf("\nD√©fragmentation de la m√©moire termin√©e.\n");
     display_memory_state();
 }
 
@@ -475,7 +482,7 @@ void supprimer_fichier(const char *file_name) {
     int mode = read_metadonne(file_name, 4);
 
     if (adr_pr == -1 || bloc_count <= 0) {
-        printf("Erreur : fichier '%s' introuvable ou dÈj‡ supprimÈ.\n", file_name);
+        printf("Erreur : fichier '%s' introuvable ou d√©j√† supprim√©.\n", file_name);
         return;
     }
 
@@ -498,7 +505,7 @@ void supprimer_fichier(const char *file_name) {
     }
 
     supp_metadonnes(file_name);
-    printf("Fichier '%s' supprimÈ avec succËs.\n", file_name);
+    printf("Fichier '%s' supprim√© avec succ√®s.\n", file_name);
 }
 
 void clear_memory() {
@@ -514,23 +521,23 @@ void clear_memory() {
             strcpy(memory[i].r[j].data, "");
         }
     }
-    printf("\nMÈmoire vidÈe avec succËs.\n");
+    printf("\nM√©moire vid√©e avec succ√®s.\n");
 }
 
 // Menu functions
 void afficher_menu() {
     printf("\n=================== MENU ===================\n");
-    printf("1. Initialiser la mÈmoire\n");
-    printf("2. Afficher l'Ètat de la mÈmoire\n");
-    printf("3. Vider la mÈmoire\n");
-    printf("4. CrÈer un fichier\n");
-    printf("5. InsÈrer un enregistrement\n");
+    printf("1. Initialiser la m√©moire\n");
+    printf("2. Afficher l'√©tat de la m√©moire\n");
+    printf("3. Vider la m√©moire\n");
+    printf("4. Cr√©er un fichier\n");
+    printf("5. Ins√©rer un enregistrement\n");
     printf("6. Chercher un enregistrement\n");
     printf("7. Supprimer un enregistrement (logique)\n");
     printf("8. Supprimer un enregistrement (physique)\n");
-    printf("9. Compactage de la mÈmoire\n");
-    printf("10. DÈfragmentation de la mÈmoire\n");
-    printf("11. Afficher les mÈtadonnÈes\n");
+    printf("9. Compactage de la m√©moire\n");
+    printf("10. D√©fragmentation de la m√©moire\n");
+    printf("11. Afficher les m√©tadonn√©es\n");
     printf("12. Supprimer un fichier\n");
     printf("0. Quitter\n");
     printf("===========================================\n");
@@ -562,7 +569,7 @@ void menu() {
                 scanf("%s", file_name);
                 printf("Nombre d'enregistrements : ");
                 scanf("%d", &record_count);
-                printf("Mode (1 = contigu, 0 = chaÓnÈ) : ");
+                printf("Mode (1 = contigu, 0 = cha√Æn√©) : ");
                 scanf("%d", &mode);
                 crier_fichier(file_name, record_count, mode);
                 break;
@@ -571,7 +578,7 @@ void menu() {
                 scanf("%s", file_name);
                 printf("ID de l'enregistrement : ");
                 scanf("%d", &id);
-                printf("DonnÈes : ");
+                printf("Donn√©es : ");
                 scanf("%s", data);
                 insertRecord(file_name, id, data);
                 break;
@@ -582,7 +589,7 @@ void menu() {
                 scanf("%d", &id);
                 record = searchRecord(file_name, id);
                 if (record) {
-                    printf("Enregistrement trouvÈ : ID = %d, Data = %s\n", 
+                    printf("Enregistrement trouv√© : ID = %d, Data = %s\n", 
                            record->id, record->data);
                 }
                 break;
@@ -610,7 +617,7 @@ void menu() {
                 afficher_metadonnes();
                 break;
             case 12:
-                printf("Nom du fichier ‡ supprimer : ");
+                printf("Nom du fichier √† supprimer : ");
                 scanf("%s", file_name);
                 supprimer_fichier(file_name);
                 break;
