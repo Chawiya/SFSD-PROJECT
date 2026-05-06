@@ -2,24 +2,7 @@
 Application : Système de gestion d'une clinique médicale (console Java)
 
 ## Description
-Personne : classe abstraite de base (id, nom, prénom, téléphone, date de naissance), calcul d’âge, afficherProfil() abstraite.
-Patient : hérite de Personne, ajoute NSS, groupe sanguin, antécédents, avec ajouterAntecedent() et afficherDossier().
-PersonnelMedical : hérite de Personne, ajoute matricule, date d’embauche, salaire.
-Medecin et Infirmier : héritent de PersonnelMedical, ajoutent leurs champs métiers (spécialité/tarif et service/grade) et redéfinissent afficherProfil().
-Consultation : relie patient + médecin avec date, diagnostic, notes, statut et ordonnance.
-Ordonnance : liée à une consultation, contient une liste de Medicament, avec validation métier.
-Medicament : nom, dosage, durée, contre-indications.
-CliniqueMedicale : classe centrale qui gère les listes, ajouts, recherches, création consultation, disponibilité médecin, revenus du jour.
-Main : menu interactif, saisie utilisateur, validations, affichages, et gestion d’exceptions.
-Package exception : exceptions personnalisées (PatientInexistant, MedecinIndisponible, DossierMedical, OrdonnanceInvalide).
-Concepts POO appliqués :
-
-Encapsulation : attributs privés + validations dans setters.
-Héritage : hiérarchie Personne -> PersonnelMedical -> Medecin/Infirmier.
-Polymorphisme : afficherProfil() redéfini dans les sous-classes.
-Abstraction : Personne abstraite.
-Surcharge : constructeurs de Consultation / Ordonnance.
-Exceptions métier : package dédié + try/catch dans Main.
+Ce projet est une application console Java de gestion d’une clinique médicale basée sur la POO. Il modélise les patients, le personnel médical (médecins et infirmiers), les consultations, les ordonnances et les médicaments, avec validations des données et exceptions métier personnalisées. L’architecture repose sur l’abstraction (Personne), l’héritage (PersonnelMedical, Medecin, Infirmier), le polymorphisme (afficherProfil()), et l’encapsulation (attributs privés + setters validés). La classe CliniqueMedicale centralise la logique de gestion, tandis que Main fournit un menu interactif pour exécuter les fonctionnalités principales.
 
 ## Table des matières:
 1- Ajouter un patient
