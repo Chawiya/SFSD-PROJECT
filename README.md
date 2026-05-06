@@ -4,18 +4,30 @@ Application : Système de gestion d'une clinique médicale (console Java)
 ## Description
 Ce projet est une application console Java de gestion d’une clinique médicale basée sur la POO. Il modélise les patients, le personnel médical (médecins et infirmiers), les consultations, les ordonnances et les médicaments, avec validations des données et exceptions métier personnalisées. L’architecture repose sur l’abstraction (Personne), l’héritage (PersonnelMedical, Medecin, Infirmier), le polymorphisme (afficherProfil()), et l’encapsulation (attributs privés + setters validés). La classe CliniqueMedicale centralise la logique de gestion, tandis que Main fournit un menu interactif pour exécuter les fonctionnalités principales.
 
+
 ## Table des matières:
 1- Ajouter un patient
+
 2- Ajouter un médecin
+
 3- Ajouter un infirmier
+
 4- Créer une consultation
+
 5- Ajouter une ordonnance
+
 6- Afficher les patients
+
 7- Afficher les médecins
+
 8- Afficher les consultations
+
 9- Consulter le dossier patient
+
 10- Afficher le tableau de bord
+
 11- Terminer une consultation
+
 0- Quitter l’application
 
 
