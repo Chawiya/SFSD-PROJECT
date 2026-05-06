@@ -1,78 +1,106 @@
-# SFSD-PROJECT "SGF"
+# Projet : POO_PROJECT
+Application : Système de gestion d'une clinique médicale (console Java)
 
 ## Description
-A simulator that models fundamental principles of file management systems, allowing users to create, manage, and manipulate files on a virtual disk.
+Personne : classe abstraite de base (id, nom, prénom, téléphone, date de naissance), calcul d’âge, afficherProfil() abstraite.
+Patient : hérite de Personne, ajoute NSS, groupe sanguin, antécédents, avec ajouterAntecedent() et afficherDossier().
+PersonnelMedical : hérite de Personne, ajoute matricule, date d’embauche, salaire.
+Medecin et Infirmier : héritent de PersonnelMedical, ajoutent leurs champs métiers (spécialité/tarif et service/grade) et redéfinissent afficherProfil().
+Consultation : relie patient + médecin avec date, diagnostic, notes, statut et ordonnance.
+Ordonnance : liée à une consultation, contient une liste de Medicament, avec validation métier.
+Medicament : nom, dosage, durée, contre-indications.
+CliniqueMedicale : classe centrale qui gère les listes, ajouts, recherches, création consultation, disponibilité médecin, revenus du jour.
+Main : menu interactif, saisie utilisateur, validations, affichages, et gestion d’exceptions.
+Package exception : exceptions personnalisées (PatientInexistant, MedecinIndisponible, DossierMedical, OrdonnanceInvalide).
+Concepts POO appliqués :
+
+Encapsulation : attributs privés + validations dans setters.
+Héritage : hiérarchie Personne -> PersonnelMedical -> Medecin/Infirmier.
+Polymorphisme : afficherProfil() redéfini dans les sous-classes.
+Abstraction : Personne abstraite.
+Surcharge : constructeurs de Consultation / Ordonnance.
+Exceptions métier : package dédié + try/catch dans Main.
 
 ## Table des matières:
-(The Menu Of Our Code).
-1. Initialiser la mémoire
-2. Afficher l'état de la mémoire
-3. Vider la mémoire
-4. Créer un fichier
-5. Insérer un enregistrement
-6. Chercher un enregistrement
-7. Supprimer un enregistrement (logique)
-8. Supprimer un enregistrement (physique)
-9. Compactage de la mémoire
-10. Défragmentation de la mémoire
-11. Afficher les métadonnées
-12. Supprimer un fichier
-0. Quitter
+1- Ajouter un patient
+2- Ajouter un médecin
+3- Ajouter un infirmier
+4- Créer une consultation
+5- Ajouter une ordonnance
+6- Afficher les patients
+7- Afficher les médecins
+8- Afficher les consultations
+9- Consulter le dossier patient
+10- Afficher le tableau de bord
+11- Terminer une consultation
+0- Quitter l’application
+
 
 ## Objectives:
-•	Comprendre comment fonctionne un système de gestion de fichiers (SGF) et ses principaux mécanismes.
-•	Apprendre à utiliser des structures de données comme les tableaux et les listes chaînées pour organiser des fichiers.
-•	Gérer efficacement l’espace mémoire, en allouant et libérant les blocs de stockage correctement.
-•	Créer des algorithmes simples et efficaces pour insérer, chercher et supprimer des fichiers.
-•	Améliorer nous compétences en programmation en C grâce à un projet concret et pratique.
-•	Savoir rédiger un bon rapport technique pour expliquer le fonctionnement de notre programme.
+- Gérer les patients (création, profil, dossier médical, antécédents).
+- Gérer le personnel médical (médecins et infirmiers).
+- Planifier les consultations avec contrôle de disponibilité du médecin.
+- Créer et valider les ordonnances avec médicaments prescrits.
+- Sécuriser les données via validations et exceptions métier.
+- Fournir une interface console simple via un menu interactif.
+- Suivre l’activité de la clinique (effectifs, consultations, revenus du jour).
 
 
 ## Caractéristiques
-Création et suppression de fichiers
-Gestion de l'allocation de mémoire
-Gestion des métadonnées pour les fichiers
+- Application console Java orientée objet.
+- Architecture en packages (clinique, exception).
+- Encapsulation avec validations dans les setters.
+- Héritage (Personne → PersonnelMedical → Medecin/Infirmier).
+- Polymorphisme via afficherProfil() redéfini.
+- Abstraction avec classe Personne abstraite.
+- Gestion d’exceptions métier personnalisées.
+- Menu interactif avec saisie contrôlée.
+- Gestion complète consultation/ordonnance.
+- Tableau de bord (comptages + revenus du jour).
 
   
 ## Étapes de Développement
-Concevoir des structures pour la mémoire et les fichiers.
-Implémenter les opérations sur les fichiers.
-Tester les fonctionnalités avec divers scénarios.
-
+- Analyser le cahier des charges du mini-projet.
+- Concevoir le modèle UML (classes et relations).
+- Créer les classes de base (Personne, Patient, PersonnelMedical).
+- Implémenter les classes métiers (Medecin, Infirmier, Consultation, Ordonnance, Medicament).
+- Ajouter les validations des données dans les setters.
+- Créer les exceptions métier dans le package exception.
+- Développer la classe CliniqueMedicale pour centraliser la logique de gestion.
+- Construire le menu interactif dans Main.
+- Tester chaque fonctionnalité (ajout, recherche, consultation, ordonnance, tableau de bord).
+- Corriger les erreurs et améliorer les messages utilisateur.
+- Finaliser le projet (README, nettoyage, vérification de compilation/exécution).
    
 ## Tests
-Testé avec des scénarios incluant la création, l'insertion et la suppression de fichiers dans diverses conditions.
-
-![Screenshot 2025-01-06 022638](https://github.com/user-attachments/assets/1f036ed6-7cac-488b-a630-f74e63467b00)
-![Screenshot 2025-01-06 022722](https://github.com/user-attachments/assets/8024d9c6-0c45-4233-9ea3-c55ab47d70bc)
-![Screenshot 2025-01-06 022740](https://github.com/user-attachments/assets/e828200d-b218-4fa9-ae40-416d4d492262)
-![Screenshot 2025-01-06 022819](https://github.com/user-attachments/assets/7a6b8c31-8506-4627-883c-187fa9b5726a)
-![Screenshot 2025-01-06 022912](https://github.com/user-attachments/assets/eddbdf17-21ed-4616-bb53-41012b942029)
-![Screenshot 2025-01-06 023001](https://github.com/user-attachments/assets/2203bf57-bad5-43a8-8de7-64c0327ff674)
-![Screenshot 2025-01-06 023025](https://github.com/user-attachments/assets/032f6102-283c-431d-a616-eda93b6282bc)
-![Screenshot 2025-01-06 023121](https://github.com/user-attachments/assets/04c971a7-b622-40f4-829f-2bd4068fa0ff)
-![Screenshot 2025-01-06 023137](https://github.com/user-attachments/assets/704036f2-d05f-4599-be48-6c629ad41523)
-![Screenshot 2025-01-06 023326](https://github.com/user-attachments/assets/f31feac1-8033-4fcc-bae4-bb5e999a9731)
-![Screenshot 2025-01-06 023339](https://github.com/user-attachments/assets/1a9d5c38-ae39-4c18-bb42-76eb50dc5312)
-![Screenshot 2025-01-06 023401](https://github.com/user-attachments/assets/20a4a922-f096-4a72-9b75-93983afc9300)
-![Screenshot 2025-01-06 023432](https://github.com/user-attachments/assets/acd730ee-8239-4965-b8b6-eb10dc463ec8)
-![Screenshot 2025-01-06 023447](https://github.com/user-attachments/assets/0fb5e001-3bfb-4293-8372-d65d979c1170)
-![Screenshot 2025-01-06 023513](https://github.com/user-attachments/assets/99d218d3-9336-41f4-af25-bd563ce04901)
-![Screenshot 2025-01-06 023528](https://github.com/user-attachments/assets/3fffb894-b752-48e5-a278-d1b69f031b4c)
-![Screenshot 2025-01-06 023544](https://github.com/user-attachments/assets/e189faa2-444f-437e-a291-fb1673162fa5)
-![Screenshot 2025-01-06 023557](https://github.com/user-attachments/assets/26f6a387-1f90-413d-a2d1-c48c73ef773a)
-![Screenshot 2025-01-06 023614](https://github.com/user-attachments/assets/06b1c94d-a21a-4393-b414-be1edadd387b)
-![Screenshot 2025-01-06 023630](https://github.com/user-attachments/assets/cf54bb86-fb77-400a-a362-2c04a5dc3a7a)
-![Screenshot 2025-01-06 023650](https://github.com/user-attachments/assets/599d4a6c-abed-4544-ac91-bd5426fd300b)
-![Screenshot 2025-01-06 023706](https://github.com/user-attachments/assets/985d6173-6e08-4193-93c9-c114db684ae4)
+Testé avec des scénarios incluant l'insertion et l'affichage.
+<img width="1402" height="803" alt="Screenshot 2026-05-06 123002" src="https://github.com/user-attachments/assets/5c64ba88-90ae-48ef-9bf7-eb0e99e17623" />
+<img width="705" height="427" alt="Screenshot 2026-05-06 135949" src="https://github.com/user-attachments/assets/b4ca79df-7aeb-433e-860b-c251f2dd2154" />
+<img width="1169" height="479" alt="Screenshot 2026-05-06 140140" src="https://github.com/user-attachments/assets/5926775f-4a1b-4f8a-8d43-4309a3519ba9" />
+<img width="1337" height="686" alt="Screenshot 2026-05-06 122242" src="https://github.com/user-attachments/assets/093d278a-dc0d-4c53-9ca8-39d31eea1392" />
+<img width="1087" height="532" alt="Screenshot 2026-05-06 122353" src="https://github.com/user-attachments/assets/1dc4b5fb-5086-4e3b-91e7-43c8053a5c0e" />
+<img width="863" height="466" alt="Screenshot 2026-05-06 122435" src="https://github.com/user-attachments/assets/b7e14594-1c62-4f3b-969c-1d310bdc8c21" />
+<img width="769" height="472" alt="Screenshot 2026-05-06 122506" src="https://github.com/user-attachments/assets/02c4c20d-a357-4484-82d6-be9c7248ea71" />
+<img width="678" height="452" alt="Screenshot 2026-05-06 122540" src="https://github.com/user-attachments/assets/7587f015-ca09-49a7-9dae-aa4876cf98a3" />
+<img width="1112" height="483" alt="Screenshot 2026-05-06 122624" src="https://github.com/user-attachments/assets/b109f2b0-d4d2-4a85-9b91-f3829679e157" />
+<img width="711" height="664" alt="Screenshot 2026-05-06 122701" src="https://github.com/user-attachments/assets/47ddfe32-5dd5-45a9-a107-6b75835c9810" />
+<img width="816" height="477" alt="Screenshot 2026-05-06 122734" src="https://github.com/user-attachments/assets/84d042ae-809c-4d3f-a962-1182ecc40962" />
+maintenant testant l'exceptions
+<img width="979" height="92" alt="image" src="https://github.com/user-attachments/assets/0aa42ad4-c9fd-4076-9866-2bce9a9d139a" />
+<img width="1116" height="117" alt="image" src="https://github.com/user-attachments/assets/23ae53c0-316e-42ff-91d1-47a2726a8637" />
+<img width="726" height="138" alt="image" src="https://github.com/user-attachments/assets/8d92b46c-9841-453f-9568-c084fd864235" />
+<img width="899" height="103" alt="image" src="https://github.com/user-attachments/assets/fd607b2e-fe38-4ca5-8cec-09f4f0589850" />
+<img width="967" height="65" alt="image" src="https://github.com/user-attachments/assets/4e07fea0-ac1c-4a95-a829-c4f7b723fff2" />
+<img width="1127" height="69" alt="image" src="https://github.com/user-attachments/assets/d16706f5-95cd-48e9-b6c5-48b907f3044e" />
+<img width="990" height="125" alt="image" src="https://github.com/user-attachments/assets/be623825-aa62-43a6-ab31-38612f9952a1" />
 
 
 
 ## Remerciements
-Merci à mon instructeur "Dr. LAHRECHE Abdelmadjid" et à mes camarades pour leur soutien.
+Merci à mon instructeur "Dr.SOLTANI HAMA " et à mes camarades pour leur soutien.
 
 ## Informations de Contact
 Pour toute question, contactez-moi à : amanidz2tt@gmail.com
 
 ## Team
-AMANI, RYM, DOUAA, WISSAM, SAMAH, DJIHANE
+AMANI, AMIRA, IMENE, MOHAMED
